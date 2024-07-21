@@ -11,7 +11,6 @@ import com.bluemango.project_backend.dto.SellerResponse;
 import com.bluemango.project_backend.models.Seller;
 import com.bluemango.project_backend.repositories.SellerRepository;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service

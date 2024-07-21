@@ -17,11 +17,12 @@ public class SellerRequest {
     @NotBlank(message = "Name cannot be blank")
     private String name; 
 
-
+    @NotNull(message = "Salary cannot be null")
     @Min(value = 0, message = "Salary cannot be negative")
     private Double salary; 
 
-
+    @NotNull(message = "Bonus cannot be null")
+    @Min(value = 0, message = "Bonus cannot be negative")
     private Double bonus; 
 
     @NotNull(message = "Gender cannot be null")

@@ -23,13 +23,13 @@ public class Seller implements Serializable{
     @Column(nullable = false, length = 255)
     private String name;
 
-
+    @Column(nullable = false)
     private Double salary; 
 
-
+    @Column(nullable = false)
     private Double bonus; 
 
-
+    @Column(nullable = false)
     private Integer gender;
 
 
