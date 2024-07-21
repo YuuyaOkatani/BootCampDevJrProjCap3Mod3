@@ -64,11 +64,8 @@ public class SellerRequest {
 
     public Seller toEntity() {
         // TODO Auto-generated method stub
-        Seller seller = new Seller();
-        seller.setName(this.name);
-        seller.setSalary(this.salary);
-        seller.setBonus(this.bonus);
-        seller.setGender(this.gender);
+        Seller seller = new Seller(name, salary, bonus, gender);
+       
         return seller;
         
     } 

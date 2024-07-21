@@ -35,9 +35,6 @@ public class SellerController {
     @Autowired
     private SellerService sellerService;
 
-    @Autowired
-    private SellerRepository sellerRepository;
-
 
     //Create Endpoint
     @PostMapping
@@ -79,11 +76,7 @@ public class SellerController {
     //Delete Endpoint
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteSeller(@PathVariable long id) {
-        Seller seller = sellerRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        "Seller not found"));
-
-        sellerRepository.delete(seller);
+        sellerService.deleteById(id);
         return ResponseEntity.noContent().build();
 
     }

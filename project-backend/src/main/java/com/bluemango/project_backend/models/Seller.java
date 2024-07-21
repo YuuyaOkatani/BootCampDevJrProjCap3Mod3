@@ -35,6 +35,17 @@ public class Seller implements Serializable{
 
     public Seller() {}
 
+    
+
+    public Seller(String name, Double salary, Double bonus, Integer gender) {
+        this.name = name;
+        this.salary = salary;
+        this.bonus = bonus;
+        this.gender = gender;
+    }
+
+
+
     public Seller(Long id, String name, Double salary, Double bonus, Integer gender) {
         this.id = id;
         this.name = name;
@@ -107,12 +118,8 @@ public class Seller implements Serializable{
 
     public SellerResponse toDTO() {
         // TODO Auto-generated method stub
-        SellerResponse sellerResponse = new SellerResponse(); 
-        sellerResponse.setId(id);
-        sellerResponse.setName(name);
-        sellerResponse.setSalary(salary);
-        sellerResponse.setBonus(bonus);
-        sellerResponse.setGender(gender);
+        SellerResponse sellerResponse = new SellerResponse(id, name, salary, bonus, gender); 
+       
         return sellerResponse;
     } 
 
