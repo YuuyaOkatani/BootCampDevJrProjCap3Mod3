@@ -2,6 +2,8 @@ package com.bluemango.project_backend.models;
 
 import java.io.Serializable;
 
+import com.bluemango.project_backend.dto.SellerResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -101,6 +103,17 @@ public class Seller implements Serializable{
     public String toString() {
         return "Seller [id=" + id + ", name=" + name + ", salary=" + salary + ", bonus=" + bonus + ", gender=" + gender
                 + "]";
+    }
+
+    public SellerResponse toDTO() {
+        // TODO Auto-generated method stub
+        SellerResponse sellerResponse = new SellerResponse(); 
+        sellerResponse.setId(id);
+        sellerResponse.setName(name);
+        sellerResponse.setSalary(salary);
+        sellerResponse.setBonus(bonus);
+        sellerResponse.setGender(gender);
+        return sellerResponse;
     } 
 
     
