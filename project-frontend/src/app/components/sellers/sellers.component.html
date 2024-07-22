@@ -1,32 +1,23 @@
-<app-seller></app-seller>
+<app-seller [seller]="seller" (saveEmitter)="saveSeller($event)"></app-seller>
 
 <div class="container">
     <table class="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Name</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Bonus</th>
+            <th scope="col">Gender</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td></td>
+          <tr *ngFor="let seller of sellers">
+            <th scope="row">{{seller.id}}</th>
+            <td>{{seller.name}}</td>
+            <td>{{seller.salary}}</td>
+            <td>{{seller.bonus}}</td>
+            <td>{{seller.gender == 1? 'Female': 'Male'}}</td>
           </tr>
         </tbody>
       </table>

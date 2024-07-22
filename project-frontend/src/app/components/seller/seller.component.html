@@ -1,1 +1,50 @@
-<p>seller works!</p>
+<div class="container mt-5 mb-5">
+    <form [formGroup]="forms" #ngForms="ngForm">
+        <div class="row mb-3 mt-3">
+            <div class="col-6">
+                <label for="inputName" class="form-label">Name:</label>
+                <div class="col">
+                    <input type="text" class="form-control" name="name" id="inputName" formControlName="name">
+                </div>
+                <div *ngIf="ngForms.submitted">
+                    <small *ngIf="validName?.errors?.['required']" class="text text-danger">Nome é requerido!</small>
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="inputSalary" class="form-label">Salary:</label>
+                <div class="col">
+                    <input type="text" class="form-control" name="salary" id="inputSalary" formControlName="salary">
+                </div>
+                <div>
+                    <small *ngIf="validSalary?.errors?.['required']" class="text text-danger">Salário é requerido!</small>
+                </div>
+            </div>
+            <!--//TODO colocar uma mascara para ficar mais legal-->
+        </div>
+  
+        <div class="row mb-3 mt-3">
+            <div class="col-6">
+                <label for="inputBonus" class="form-label">Bonus:</label>
+                <div class="col">
+                    <input type="text" class="form-control" name="bonus" id="inputBonus" formControlName="bonus">
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="inputBonus" class="form-label">Gender:</label>
+                <select class="form-select" aria-label="Default select example" formControlName="gender">
+                    <option value=0>Male</option>
+                    <option value=1>Female</option>
+                  </select>
+                  <div>
+                    <small *ngIf="validGender?.errors?.['required']" class="text text-danger">Sexo é requerido!</small>
+                </div>
+
+            </div>
+            <!--//TODO colocar uma mascara para ficar mais legal-->
+        </div>
+
+
+    
+        <button type="submit" class="btn btn-primary" (click)="save()" >Submit</button>
+    </form>
+</div>
