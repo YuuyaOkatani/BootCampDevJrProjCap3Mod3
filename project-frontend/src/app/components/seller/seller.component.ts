@@ -1,5 +1,5 @@
 import { Component, Input, Output,EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Seller } from '../../interfaces/Seller';
+import { Seller } from '../../interfaces/seller';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -23,8 +23,8 @@ export class SellerComponent implements OnChanges {
     this.forms = this.formbuilder.group({
       id: [''],
       name: ['', [Validators.required, Validators.minLength(3)]],
-      salary: ['',[Validators.required, Validators.nullValidator]],
-      bonus: [0],
+      salary: ['', [Validators.required, Validators.nullValidator]],
+      bonus: [0, [Validators.required, Validators.nullValidator, Validators.min(0)]],
       gender: ['',[Validators.required]],
     });
    }
@@ -41,6 +41,9 @@ export class SellerComponent implements OnChanges {
 
    get validSalary(){
     return this.forms.get('salary')
+   }
+   get validBonus(){
+    return this.forms.get('bonus')
    }
 
    get validGender(){

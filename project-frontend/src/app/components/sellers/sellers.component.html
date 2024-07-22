@@ -4,11 +4,12 @@
     <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Salary</th>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Salário</th>
             <th scope="col">Bonus</th>
-            <th scope="col">Gender</th>
+            <th scope="col">Sexo</th>
+            <th scope="col"  class="text-end">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,10 @@
             <td>{{seller.salary}}</td>
             <td>{{seller.bonus}}</td>
             <td>{{seller.gender == 1? 'Female': 'Male'}}</td>
+            <td class="text-end">
+              <button  class="btn btn-success me-1" (click)="editSeller(seller)"><i class="bi bi-pencil"></i></button>
+              <button  class="btn btn-danger" (click)="deleteSeller(seller)"><i class="bi bi-trash"></i></button>
+            </td>
           </tr>
         </tbody>
       </table>

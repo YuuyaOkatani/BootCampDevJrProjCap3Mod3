@@ -2,20 +2,21 @@
     <form [formGroup]="forms" #ngForms="ngForm">
         <div class="row mb-3 mt-3">
             <div class="col-6">
-                <label for="inputName" class="form-label">Name:</label>
+                <label for="inputName" class="form-label">Nome:</label>
                 <div class="col">
                     <input type="text" class="form-control" name="name" id="inputName" formControlName="name">
                 </div>
                 <div *ngIf="ngForms.submitted">
                     <small *ngIf="validName?.errors?.['required']" class="text text-danger">Nome é requerido!</small>
+                    <small *ngIf="validName?.errors?.['minlength']" class="text text-danger">Caracteres mínimos = 3!</small>
                 </div>
             </div>
             <div class="col-6">
-                <label for="inputSalary" class="form-label">Salary:</label>
+                <label for="inputSalary" class="form-label">Salário:</label>
                 <div class="col">
                     <input type="text" class="form-control" name="salary" id="inputSalary" formControlName="salary">
                 </div>
-                <div>
+                <div *ngIf="ngForms.submitted">
                     <small *ngIf="validSalary?.errors?.['required']" class="text text-danger">Salário é requerido!</small>
                 </div>
             </div>
@@ -28,14 +29,19 @@
                 <div class="col">
                     <input type="text" class="form-control" name="bonus" id="inputBonus" formControlName="bonus">
                 </div>
+                <div *ngIf="ngForms.submitted">
+                    <small *ngIf="validBonus?.errors?.['min']" class="text text-danger">Bonus não pode ser negativo!</small>
+                    <small *ngIf="validBonus?.errors?.['required']" class="text text-danger">Bonus não pode ser nulo!</small>
+                    
+                </div>
             </div>
             <div class="col-6">
-                <label for="inputBonus" class="form-label">Gender:</label>
+                <label for="inputBonus" class="form-label">Sexo:</label>
                 <select class="form-select" aria-label="Default select example" formControlName="gender">
-                    <option value=0>Male</option>
-                    <option value=1>Female</option>
+                    <option value=0>Masculino</option>
+                    <option value=1>Feminino</option>
                   </select>
-                  <div>
+                  <div *ngIf="ngForms.submitted">
                     <small *ngIf="validGender?.errors?.['required']" class="text text-danger">Sexo é requerido!</small>
                 </div>
 
@@ -45,6 +51,7 @@
 
 
     
-        <button type="submit" class="btn btn-primary" (click)="save()" >Submit</button>
+        <button type="submit" class="btn btn-primary me-1" (click)="save()" >Salvar</button>
+        <button type="button" class="btn btn-danger" (click)="cancel()">Cancelar</button>
     </form>
 </div>
