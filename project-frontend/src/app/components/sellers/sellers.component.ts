@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Seller } from '../../interfaces/seller';
 import { SellerService } from '../../services/seller.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sellers',
@@ -12,8 +13,14 @@ export class SellersComponent implements OnInit {
   sellers: Seller[] = [];
   seller: Seller = {} as Seller;
 
+  activateForms: boolean = false;
 
-  constructor(private sellerService: SellerService) { }
+
+  constructor(
+    private sellerService: SellerService,
+    private modalService: NgbModal
+
+  ) { }
 
   ngOnInit(): void {
     this.loadSellers();
@@ -30,11 +37,15 @@ export class SellersComponent implements OnInit {
     if (save) {
       if (this.seller.id) {
         this.sellerService.putSeller(this.seller).subscribe();
+        console.log(this.seller)
+        this.loadSellers();
+        console.log("até aqui tá tudo certo")
       } else {
         this.sellerService.postSeller(this.seller).subscribe({
           next: data => {
             this.sellers.push(data)
             console.log(data)
+            this.loadSellers();
           },
           error: error => console.error(error.error.errors)
 
@@ -42,18 +53,49 @@ export class SellersComponent implements OnInit {
         })
 
       }
+
     }
 
     this.seller = {} as Seller;
-    this.loadSellers();
+    
+    this.activateForms = false;
+
   }
 
-  deleteSeller(seller:Seller) {
-    
-    
+  deleteSeller(modal: any, seller: Seller) {
+    this.seller = seller;
+    this.modalService.open(modal).result.then(
+      (confirm) => {
+        if (confirm) {
+          this.sellerService.deleteSeller(seller).subscribe({
+            next: () => {
+              this.sellers = this.sellers.filter(s => s.id !== seller.id)
+            }
+          })
+
+        }
+
+      }
+    )
+    this.activateForms = false;
+    this.seller = {} as Seller;
+
+
+
+
   }
-  editSeller(seller:Seller) {
-    
+  editSeller(seller: Seller) {
+    this.seller = seller;
+    this.activateForms = true;
+    this.loadSellers();
+
+
+  }
+
+  addSeller() {
+    this.activateForms = true;
+    this.loadSellers();
+
   }
 
 

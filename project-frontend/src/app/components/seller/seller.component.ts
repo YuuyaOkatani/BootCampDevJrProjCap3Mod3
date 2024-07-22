@@ -22,9 +22,9 @@ export class SellerComponent implements OnChanges {
   constructor(private formbuilder: FormBuilder) {
     this.forms = this.formbuilder.group({
       id: [''],
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      salary: ['', [Validators.required, Validators.nullValidator]],
-      bonus: [0, [Validators.required, Validators.nullValidator, Validators.min(0)]],
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      salary: ['', [Validators.required,  Validators.min(1)]],
+      bonus: [0, [Validators.required,  Validators.min(0), Validators.max(100)]],
       gender: ['',[Validators.required]],
     });
    }

@@ -11,18 +11,19 @@ import jakarta.validation.constraints.Size;
 
 public class SellerRequest {
 
-    @Size(min = 3 , max = 255, message = "Name length min = 3 and max = 255")
+    @Size(min = 5 , max = 255, message = "Name length min = 5 and max = 255")
     @NotNull(message = "Name cannot be null")
     @NotEmpty(message = "Name cannot be empty")
     @NotBlank(message = "Name cannot be blank")
     private String name; 
 
     @NotNull(message = "Salary cannot be null")
-    @Min(value = 0, message = "Salary cannot be negative")
+    @Min(value = 1, message = "Salary greater than zero")
     private Double salary; 
 
     @NotNull(message = "Bonus cannot be null")
     @Min(value = 0, message = "Bonus cannot be negative")
+    @Max(value = 100, message = "Bonus max = 100%")
     private Double bonus; 
 
     @NotNull(message = "Gender cannot be null")

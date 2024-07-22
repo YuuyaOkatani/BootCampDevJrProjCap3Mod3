@@ -1,6 +1,10 @@
-<app-seller [seller]="seller" (saveEmitter)="saveSeller($event)"></app-seller>
+<app-seller *ngIf="activateForms"  [seller]="seller" (saveEmitter)="saveSeller($event)"></app-seller>
 
-<div class="container">
+
+<div class="container mt-5" *ngIf="!activateForms">
+  <div class="display-5 mb-5">
+    Vendedores:
+  </div>
     <table class="table">
         <thead>
           <tr>
@@ -16,14 +20,32 @@
           <tr *ngFor="let seller of sellers">
             <th scope="row">{{seller.id}}</th>
             <td>{{seller.name}}</td>
-            <td>{{seller.salary}}</td>
-            <td>{{seller.bonus}}</td>
-            <td>{{seller.gender == 1? 'Female': 'Male'}}</td>
+            <td>{{seller.salary | currency: 'BRL'}}</td>
+            <td>{{seller.bonus}}%</td>
+            <td>{{seller.gender == 1? 'Feminino': 'Masculino'}}</td>
             <td class="text-end">
               <button  class="btn btn-success me-1" (click)="editSeller(seller)"><i class="bi bi-pencil"></i></button>
-              <button  class="btn btn-danger" (click)="deleteSeller(seller)"><i class="bi bi-trash"></i></button>
+              <button  class="btn btn-danger" (click)="deleteSeller(confirmModal, seller)"><i class="bi bi-trash"></i></button>
             </td>
           </tr>
         </tbody>
       </table>
+
+      <button  class="btn btn-success btn-lg" (click)="addSeller()"><i class="bi bi-plus-square"></i></button>
 </div>
+
+<ng-template #confirmModal let-modal>
+  <div class="modal-header">
+      <h5 class="modal-title">Remover vendedor</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.close()"></button>
+    </div>
+    <div class="modal-body">
+      <p>Remover o vendedor {{seller.name}}?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="modal.close(true)">Confirmar</button>
+      <button type="button" class="btn btn-primary" (click)="modal.close()">Cancelar</button>
+    </div>
+</ng-template>
+
+
