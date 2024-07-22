@@ -10,4 +10,5 @@
 - Tecnologias usadas:
   - **Angular e Java Spring Boot**
   - Database H2
-  - Bootstrap
+  - Bootstrap v5.3
+
