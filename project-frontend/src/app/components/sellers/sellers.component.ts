@@ -53,13 +53,15 @@ export class SellersComponent implements OnInit {
         })
 
       }
-
+      this.reloadPage()
     }
-    this.loadSellers();
+    
 
     this.seller = {} as Seller;
     
     this.activateForms = false;
+
+    this.loadSellers();
 
   }
 
@@ -88,16 +90,24 @@ export class SellersComponent implements OnInit {
   editSeller(seller: Seller) {
     this.seller = seller;
     this.activateForms = true;
-    this.loadSellers();
+    
 
 
   }
 
   addSeller() {
     this.activateForms = true;
-    this.loadSellers();
+    
 
   }
+
+  
+  reloadPage(){
+    location.reload()
+   }
+
+
+
 
 
 

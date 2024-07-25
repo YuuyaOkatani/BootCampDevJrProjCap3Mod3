@@ -53,7 +53,6 @@ export class SellerComponent implements OnChanges {
    save(){
     if(this.forms.valid){
       Object.assign(this.seller, this.forms.value) // ==> coloca os valores do formulário para o objeto seller
-      this.reloadPage()
       this.saveEmitter.emit(true)
       
 
@@ -63,12 +62,6 @@ export class SellerComponent implements OnChanges {
    cancel(){
     this.saveEmitter.emit(false)
    }
-
-   reloadPage(){
-    location.reload()
-   }
-
-
 
 
    
