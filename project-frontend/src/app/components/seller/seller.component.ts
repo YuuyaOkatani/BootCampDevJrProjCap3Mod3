@@ -1,7 +1,6 @@
-import { Component, Input, Output,EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output,EventEmitter, OnChanges, } from '@angular/core';
 import { Seller } from '../../interfaces/seller';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 
 @Component({
   selector: 'app-seller',
@@ -61,6 +60,7 @@ export class SellerComponent implements OnChanges {
    cancel(){
     this.saveEmitter.emit(false)
    }
+
 
 
 
