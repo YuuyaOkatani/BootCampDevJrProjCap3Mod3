@@ -38,14 +38,14 @@ export class SellersComponent implements OnInit {
       if (this.seller.id) {
         this.sellerService.putSeller(this.seller).subscribe();
         console.log(this.seller)
-        this.loadSellers();
+       
         console.log("até aqui tá tudo certo")
       } else {
         this.sellerService.postSeller(this.seller).subscribe({
           next: data => {
             this.sellers.push(data)
             console.log(data)
-            this.loadSellers();
+            
           },
           error: error => console.error(error.error.errors)
 
@@ -55,6 +55,7 @@ export class SellersComponent implements OnInit {
       }
 
     }
+    this.loadSellers();
 
     this.seller = {} as Seller;
     
@@ -79,7 +80,7 @@ export class SellersComponent implements OnInit {
     )
     this.activateForms = false;
     this.seller = {} as Seller;
-
+    this.loadSellers();
 
 
 
