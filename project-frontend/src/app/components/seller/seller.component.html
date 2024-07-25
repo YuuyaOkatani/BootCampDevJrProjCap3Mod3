@@ -1,6 +1,8 @@
 <div class="container mt-5 mb-5">
-    <div class="display-5 mb-5">
-        Novo vendedor:
+    <div class="display-5 mb-5" >
+        <span *ngIf="!seller.id" >Novo </span>
+        <span *ngIf="seller.id">Atualizar </span>
+        <span>vendedor</span>
     </div>
     <form [formGroup]="forms" #ngForms="ngForm">
         <div class="row mb-3 mt-3">
